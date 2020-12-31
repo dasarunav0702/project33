@@ -5,6 +5,8 @@ const Body = Matter.Body;
 const Constraint = Matter.Constraint;
 var particle;
 var score=0;
+var gameState="start";
+var count=0;
 function preload(){
 
 }
@@ -104,34 +106,39 @@ function draw() {
   object24.display();
   object25.display();
   object26.display();
-  
-  if (particle= null){ 9
-    particle.diaplay();
+  if ( gameState =="end") {
+    
+    textSize(50);
+    text("GameOver", 150, 250);
+
+  }
+  if (particle!= null){ 
+    particle.display();
     if (particle.body.position.y>300){
       if(particle.body.position.x<180){
         score=score+100;
         particle=null;
-        if (count>=5) gamestate="end";
+        if (count>=5) gameState="end";
       }
-      if(particle.body.position.x<260){
+     else if(particle.body.position.x<260 && particle.body.position.x>180){
         score=score+300;
         particle=null;
-        if (count>=5) gamestate="end";
+        if (count>=5) gameState="end";
       }
-      if(particle.body.position.x<340){
+     else if(particle.body.position.x<340 && particle.body.position.x>260){
         score=score+500;
         particle=null;
-        if (count>=5) gamestate="end";
+        if (count>=5) gameState="end";
       }
-      if(particle.body.position.x<420){
+     else if(particle.body.position.x<420 && particle.body.position.x>340){
         score=score+300;
         particle=null;
-        if (count>=5) gamestate="end";
+        if (count>=5) gameState="end";
       }
-      if(particle.body.position.x<495){
+     else if(particle.body.position.x<495 && particle.body.position.x>420){
         score=score+100;
         particle=null;
-        if (count>=5) gamestate="end";
+        if (count>=5) gameState="end";
       }
     }
   }
@@ -143,6 +150,6 @@ function draw() {
 function mousePressed(){
   if (gameState!=="end"){
     count++;
-    particle=new Particle(mousex,10,10,10);
+    particle=new Particle(mouseX,10,10,10);
   }
 }
